@@ -67,3 +67,10 @@ All timings, stage labels and scene templates are prototype design choices. Rese
 - The user authorized uploading source to Shoreee/Aivow without another deployment. README uses actual interface captures and documents the core flow, boundaries, local setup and verification.
 - setup:local initializes a fresh local database and ignored encryption secret, preserves complete existing installations, and refuses a partial legacy schema. Fresh-clone initialization and repeat-run preservation are tested.
 - GitHub Actions only typechecks, builds and runs offline configuration/local setup checks. Local credentials, runtime databases, cloud account configuration, test receipts and publication archives remain excluded.
+
+## Executable EM controls (2026-11-06)
+
+- Owner instructions invalidate pending generations before parsing, commit a concrete own-EM action immediately, and schedule the peer's next turn. Literal speech executes exactly; “请你立刻咕咕嘎嘎” is verified as source em with text “咕咕嘎嘎”.
+- Realtime starts from Life after choosing a connection, without template/place/pace questions. Own EM movement and waiting update persisted virtual Life motion. Private projections never move the other person's Life EM; accelerated imagination remains independent.
+- Ending is terminal and idempotent. Controls disappear or disable after end; the same round cannot restart. Recap jobs are deduplicated and failures retain the ended state.
+- Checks cover literal speech, actual HTTP/D1 execution, route/wait state, shared-owner permissions, stale generations, out-of-order commands, ended guards and recap concurrency. The user subsequently authorized updating the Cloudflare release and completing the GitHub upload.

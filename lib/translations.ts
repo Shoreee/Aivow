@@ -406,3 +406,11 @@ Object.assign(translations, {
  '我们在一起的时间':'Time together', '暂未分享':'Nothing shared yet.', '暂无回顾':'No recaps yet.',
  '实时分岔':'Realtime branch', '加速想象':'Fast forward'
 });
+Object.assign(translations,{
+ '正在生成回顾…':'Creating recap…',
+ '本轮已结束。':'This round is complete.',
+ '本轮已结束，请开始新的 Dream。':'This round is complete. Start a new Dream.',
+ '这条指令已被新操作取消。':'This instruction was cancelled by a newer action.',
+ '此地点不在 EM 活动范围内，请先修改 EM 设定。':'This place is outside your EM activity range. Update EM settings first.',
+ '在你更改指令前，EM 会留在这里。':'Your EM must stay here until you change that instruction.'
+});

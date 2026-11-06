@@ -1,6 +1,6 @@
 # Aivow project rules
 
-- Aivow mobile web prototype. The user authorized publishing the separate aivow-demo Cloudflare Worker and managing source at https://github.com/Shoreee/Aivow on 2026-11-06. The current GitHub-upload task does not authorize another deployment. Do not modify the older hosted version.
+- Aivow mobile web prototype. The user authorized publishing the separate aivow-demo Cloudflare Worker, updating the EM-control fix on 2026-11-06, and managing source at https://github.com/Shoreee/Aivow. Do not modify the older hosted version.
 - Name Aivow; EM means ME reversed. English default; Chinese switch in Me / Settings.
 - Life / Chats / Me only. EM under Me owns profile, activity, behavior, memory and preference suggestions. Chats has a unified timeline, not a contact-directory tab.
 - Existing friends, accepted introductions or shared circles only. No matching, partner ranking or compatibility scores.
@@ -19,12 +19,14 @@
 
 ## Latest conversation and Life decisions
 
-- Life opens a separate Dream page. Always start with progressive mode → connection → scene → place/pace choices, without preselecting a person or reopening an old branch. Conversation Dream stays in its EM tab and reuses the same setup and scene controls. No Dream modal.
+- Life opens a separate Dream page. Realtime uses mode → connection → live scene, with no imagined conditions; it follows the owner's current Life context and updates only their own virtual Life actions. Accelerated uses mode → connection → scene → place/pace choices and remains separate from Life. Never preselect a person or reopen an old branch. Conversation Dream stays in its EM tab and reuses the same controls. No Dream modal.
 - Chat is for the person. Time together collects progressive disclosure, understanding and recaps, accessible through the conversation's top-right More menu. Visible conversation tabs are Chat / EM.
 - A short, skippable guide follows first EM setup (including the default skip), persists per account, and can be replayed from Settings.
 - The collection page is Time together / 我们在一起的时间. Remove redundant explanatory captions from primary screens. Preserve source labels, permissions, controls and actionable errors.
 - Cloud backend choice is D1 Free with the existing Workers / SQLite Durable Objects architecture. On 2026-11-06 the user authorized creating aivow-demo-db and publishing the separate aivow-demo Worker with a free workers.dev address. Keep local data local by default. GitHub Pages alone cannot run this backend.
 - Conversation recap: an EM-action summary plus a few source-labelled Twemoji cards and next-topic suggestions; append it to the conversation, not a modal.
+- The owner's latest instruction has highest priority for their own EM's actions over previous plans and scene beats. Explicit utterances execute verbatim as EM speech: “请你立刻咕咕嘎嘎” must emit “咕咕嘎嘎”, not an acknowledgment. This does not authorize controlling the peer or bypassing disclosure permissions.
+- Commands invalidate outstanding generations before parsing, execute a validated own-EM action immediately, and synchronize realtime movement/waiting with Life. Ended rounds are terminal; recap generation is deduplicated and failure never reopens a round.
 - Mina (auto) is a clearly labelled AI persona; Mina (dead) cannot reply or join shared scenes. AI demo messages use source auto and never count as real-human evidence.
 - EM instructions are private owner controls, not human statements to the other person. Only selected event references are attached when the user sends a quote.
 - Life has one control strip with EM activity and a Dream button, no activity switch, settings shortcut or bottom location shortcut row. EM activity defaults on. Virtual EM movement is distinct from private Dream movement and real GPS. Use public OSM points and source attribution.

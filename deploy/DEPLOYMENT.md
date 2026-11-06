@@ -2,7 +2,7 @@
 
 Published 2026-11-06 at **https://aivow-demo.aivow.workers.dev**.
 
-- Worker: `aivow-demo`; version `e2080254-6c87-4e2c-8565-7c244e78d7b3`.
+- Worker: `aivow-demo`; current version `feef2e5b-03f7-4ce9-9ce3-c4dbbbd8e670`.
 - D1: `aivow-demo-db` in APAC; all three existing schema migrations applied.
 - Background classes: `DreamScheduler` and `DemoChatScheduler`, both SQLite Durable Objects.
 - Static assets and API share the same HTTPS origin. Cloudflare created the `aivow.workers.dev` account subdomain and the `aivow-demo` app address. No domain purchase or paid-plan upgrade was performed.
@@ -33,4 +33,10 @@ After verification, only those two exact disposable accounts, their test worlds,
 
 After changes, run typecheck/build, `npm run cloudflare:prepare`, then publish the prepared config. Keep the existing cloud encryption secret; deployments retain it automatically. Do not generate a replacement secret unless planning an explicit key-storage migration. Never pass local `.dev.vars` as the deployment secrets file.
 
-The Cloudflare repository integration is optional. This release was uploaded directly from this checkout. The later source import to GitHub includes documentation and local setup improvements, without another deployment; the current source and published version can therefore differ. GitHub is not the runtime domain.
+The Cloudflare repository integration is optional. Releases were uploaded directly from this checkout; GitHub checks never deploy automatically. GitHub is not the runtime domain.
+
+## EM control update, 2026-11-06
+
+The owner authorized publishing the EM-control fixes and completing the GitHub source upload. Commands now invalidate older generations before parsing and execute a concrete action. Explicit utterances are preserved: “请你立刻咕咕嘎嘎” emits “咕咕嘎嘎” as that owner's EM speech. Realtime skips imaginary conditions and synchronizes own movement/waiting with virtual Life; private projections never move the other person's Life EM. Accelerated imagination remains independent.
+
+Ended rounds cannot resume or accept new commands. Repeated end requests are idempotent, recap generation is deduplicated, and recap errors retain the ended state. The map fits a controlled route and locates the moving EM's current position. Existing database records and the existing server encryption secret were retained; no user API key was deployed.

@@ -102,13 +102,13 @@ export async function POST(req:Request){try{
    if(typeof b.story==='string'&&text(b.story)){me.story=text(b.story);const old=me.memory.find(m=>m.source==='首次生活片段');if(old){old.text=me.story;old.shared=b.shareStory!==false;}else updateMemory(me,me.story,b.shareStory!==false,'首次生活片段');}
    if(me.draft){const m=getMeeting(w,me.draft.meetingId,me.id);if(m)cancelDraft(w,m);}
   }else if(op==='open'){
-   if(!me.ready&&b.value)throw Error('请先设置 EM');me.open=b.value===true;pauseLife(me,!me.open);if(me.open&&me.settings.behavior.autopilot)lifeStep(me);me.revision++;
+   if(!me.ready&&b.value)throw Error('请先设置 EM');me.open=b.value===true;if(me.open&&me.life)me.life.control=undefined;pauseLife(me,!me.open);if(me.open&&me.settings.behavior.autopilot)lifeStep(me);me.revision++;
    if(!me.open){for(const d of w.dreams.filter(d=>(d.owner===me.id||d.peer===me.id)&&['running','waiting'].includes(d.status)))stopDream(d,'paused','emPaused');me.draft=undefined;w.meetings.filter(m=>m.a===me.id||m.b===me.id).forEach(m=>{m.generating=undefined;cancelDraft(w,m);m.version++;});}
    activity(me,me.open?'move':'pause',me.open?'EM 已开启':'EM 已暂停');
   }else if(op==='move'){
    const destination=place(b.place);if(!me.settings.behavior.destinations.includes(destination))throw Error('先将该地点加入活动范围');
    for(const m of w.meetings.filter(m=>m.status==='active'&&(m.a===me.id||m.b===me.id))){m.status='ended';m.generating=undefined;cancelDraft(w,m);m.version++;}
-   me.place=destination;me.updatedAt=Date.now();activity(me,'move',`前往${label(destination)}`);
+   for(const d of w.dreams.filter(d=>d.mode==='realtime'&&d.participants.includes(me.id)&&d.status!=='ended'))stopDream(d,'paused','lifeMoved');me.place=destination;if(me.life)me.life.control=undefined;lifeStep(me);me.updatedAt=Date.now();activity(me,'move',`前往${label(destination)}`);
   }else if(op==='meet'){
    const target=text(b.target,80),m=startMeeting(w,me.id,target,me.place);const other=w.people.find(p=>p.id===target)!;activity(me,'meet',`与${other.name}开始交流`,m.id);activity(other,'meet',`与${me.name}开始交流`,m.id);
   }else if(op==='chat'){
