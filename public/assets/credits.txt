@@ -1,0 +1,30 @@
+Aivow · 素材来源
+
+人物：Big Smile by Ashley Seo, via DiceBear 9.x
+https://www.dicebear.com/styles/big-smile/
+CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+本地固定种子 SVG，未修改图形。
+
+街区：Twemoji graphics, Copyright Twitter, Inc and other contributors
+https://github.com/twitter/twemoji
+CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+图形未修改，仅通过界面布局组合。
+详细来源：/assets/city/LICENSE.md
+
+界面图标：Lucide https://lucide.dev/ ISC License
+道路、界面几何、应用标志：本项目绘制。
+
+地图：OpenFreeMap Bright, OpenMapTiles, OpenStreetMap contributors
+https://openfreemap.org/quick_start/
+https://openmaptiles.org/
+https://www.openstreetmap.org/copyright
+采用现成矢量底图，本地样式调整了颜色、POI 密度和优先显示语言；瓦片继续从官方公共实例加载。
+MapLibre GL JS 6.16.0, BSD-3-Clause
+完整许可：/vendor/MAPLIBRE-LICENSE.txt
+本项目不提供 GPS 定位、商家检索或真实路线规划。
+
+新增兴趣图标仍来自 Twemoji 14.0.2 的同一官方 SVG 资源包（CC BY 4.0）。
+
+Conversation recap emoji: Twemoji (jdecked/twemoji), CC BY 4.0. https://github.com/jdecked/twemoji / https://creativecommons.org/licenses/by/4.0/
+
+Life location labels and walking geometry: OpenFreeMap / OpenMapTiles / OpenStreetMap contributors, ODbL. Snapshot provenance in maps/life-data.json. Refresh with scripts/fetch-life-data.mjs.

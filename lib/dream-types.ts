@@ -1,0 +1,9 @@
+import type {Highlight,TopicSuggestion,EMControl} from './conversation-types';
+import type {PlaceId,Memory} from './world';
+export type DreamSource='person'|'em'|'projection';
+export type DreamEvent={id:string;actor:string;source:DreamSource;kind:'move'|'speak'|'wait'|'propose'|'needsOwner';text:string;place:PlaceId;time:number;sceneTime:number;memoryIds:string[]};
+export type Dream={id:string;owner:string;peer:string;parentId?:string;origin?:{meetingId?:string;messageId?:string};title:string;template:'afterWork'|'weekend'|'future';mode:'realtime'|'accelerated';visibility:'private'|'shared';status:'draft'|'running'|'paused'|'waiting'|'ended'|'error';place:PlaceId;activity:string;pace:'quiet'|'balanced'|'explore';correction:string;createdAt:number;version:number;events:DreamEvent[];controls?:EMControl[];snapshot:Record<string,Memory[]>;invitation?:{to:string;status:'pending'|'accepted'|'declined'|'withdrawn';previewIds:string[]};participants:string[];run?:{id:string;initiator:string;startedAt:number;lastHumanAt:number;steps:number;keyVersion:number;language?:'en'|'zh';lease?:string;leaseAt?:number};recap?:{text:string;eventIds:string[];highlights?:Highlight[];topics?:TopicSuggestion[];createdAt:number};error?:{code:string;message:string};stopReason?:string};
+export type DisclosureGrant={owner:string;to:string;memoryIds:string[];version:number;revisions?:Record<string,number>};
+export type Understanding={id:string;by:string;about:string;text:string;sourceIds:string[];dreamId?:string;status:'acknowledged'|'corrected'|'removed';createdAt:number};
+export type Relationship={a:string;b:string;stage:'introduced'|'exploring'|'familiar';proposal?:{stage:'exploring'|'familiar';by:string;accepted:string[];evidenceIds:string[]};understood:Understanding[]};
+export type PreferenceSuggestion={id:string;owner:string;text:string;dreamIds:string[];status:'pending'|'accepted'|'dismissed'};

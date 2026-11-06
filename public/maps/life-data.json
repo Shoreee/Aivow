@@ -1,0 +1,311 @@
+{
+  "source": "OpenFreeMap / OpenMapTiles / OpenStreetMap",
+  "tileVersion": "20261101_080013_pt",
+  "fetchedAt": "2026-11-06T01:52:42.057Z",
+  "points": [
+    {
+      "id": "osm-103697523",
+      "name": "太平桥公园",
+      "nameEn": "Taipingqiao Park",
+      "kind": "park",
+      "lng": 121.47489130496979,
+      "lat": 31.22206399582811
+    },
+    {
+      "id": "osm-4995665752",
+      "name": "淮海公园",
+      "nameEn": "Huaihai Park",
+      "kind": "park",
+      "lng": 121.4730030298233,
+      "lat": 31.225210941679123
+    },
+    {
+      "id": "osm-69338440821",
+      "name": "中环广场",
+      "nameEn": "中环广场",
+      "kind": "park",
+      "lng": 121.46827697753906,
+      "lat": 31.22387143817683
+    },
+    {
+      "id": "osm-4490563422",
+      "name": "玉兰园",
+      "nameEn": "玉兰园",
+      "kind": "park",
+      "lng": 121.46639943122864,
+      "lat": 31.220545534044604
+    },
+    {
+      "id": "osm-4078753592",
+      "name": "延中广场公园",
+      "nameEn": "Yanzhong Park",
+      "kind": "park",
+      "lng": 121.47054612636566,
+      "lat": 31.22746328319316
+    },
+    {
+      "id": "osm-1787026792",
+      "name": "音乐广场",
+      "nameEn": "Music Square",
+      "kind": "park",
+      "lng": 121.47329270839691,
+      "lat": 31.228899065551317
+    },
+    {
+      "id": "osm-18908186291",
+      "name": "人民广场",
+      "nameEn": "People's Square",
+      "kind": "park",
+      "lng": 121.47198379039764,
+      "lat": 31.230577939938016
+    },
+    {
+      "id": "osm-18908119981",
+      "name": "人民广场",
+      "nameEn": "People's Square",
+      "kind": "park",
+      "lng": 121.46853446960449,
+      "lat": 31.22949080337014
+    },
+    {
+      "id": "osm-125648745701",
+      "name": "城市书房",
+      "nameEn": "城市书房",
+      "kind": "bookshop",
+      "lng": 121.47417783737183,
+      "lat": 31.233880556592297
+    },
+    {
+      "id": "osm-3692378762",
+      "name": "黄浦区图书馆",
+      "nameEn": "黄浦区图书馆",
+      "kind": "bookshop",
+      "lng": 121.4742261171341,
+      "lat": 31.23398146806143
+    },
+    {
+      "id": "osm-41617211031",
+      "name": "Wengu",
+      "nameEn": "Wengu",
+      "kind": "bookshop",
+      "lng": 121.47621095180511,
+      "lat": 31.235330001895406
+    },
+    {
+      "id": "osm-4776616231",
+      "name": "上海书城",
+      "nameEn": "Shanghai Book City",
+      "kind": "bookshop",
+      "lng": 121.47696197032928,
+      "lat": 31.23528872053305
+    },
+    {
+      "id": "osm-41616945961",
+      "name": "上海古籍书店",
+      "nameEn": "Shanghai Ancient Bookstore",
+      "kind": "bookshop",
+      "lng": 121.47813677787781,
+      "lat": 31.235641904939257
+    },
+    {
+      "id": "osm-41617181021",
+      "name": "上海图书公司",
+      "nameEn": "Shanghai Books Company",
+      "kind": "bookshop",
+      "lng": 121.47779881954193,
+      "lat": 31.235852897590902
+    },
+    {
+      "id": "osm-36847666821",
+      "name": "外文书店",
+      "nameEn": "Foreign Languages Bookstore",
+      "kind": "bookshop",
+      "lng": 121.47846400737762,
+      "lat": 31.23601802194611
+    },
+    {
+      "id": "osm-134370865081",
+      "name": "笃合书局",
+      "nameEn": "笃合书局",
+      "kind": "bookshop",
+      "lng": 121.47024035453796,
+      "lat": 31.236806945437337
+    },
+    {
+      "id": "osm-131464961321",
+      "name": "复兴颂",
+      "nameEn": "复兴颂",
+      "kind": "culture",
+      "lng": 121.47529900074005,
+      "lat": 31.220036316323444
+    },
+    {
+      "id": "osm-70055052301",
+      "name": "全融博物馆 银行博物馆",
+      "nameEn": "Finance Museum and Bank Museum",
+      "kind": "culture",
+      "lng": 121.47179067134857,
+      "lat": 31.218426069262307
+    },
+    {
+      "id": "osm-11996602612",
+      "name": "拉法耶艺术设计中心",
+      "nameEn": "拉法耶艺术设计中心",
+      "kind": "culture",
+      "lng": 121.47152245044708,
+      "lat": 31.21823797593622
+    },
+    {
+      "id": "osm-52376039211",
+      "name": "Provisional Government of the Republic of Korea building",
+      "nameEn": "Provisional Government of the Republic of Korea building",
+      "kind": "culture",
+      "lng": 121.47027790546417,
+      "lat": 31.218926120431192
+    },
+    {
+      "id": "osm-4354523672",
+      "name": "中共一大纪念馆",
+      "nameEn": "Site of the First National Congress of the Chinese Communist Party",
+      "kind": "culture",
+      "lng": 121.47135078907013,
+      "lat": 31.221784160293566
+    },
+    {
+      "id": "osm-3721804672",
+      "name": "中共一大会址",
+      "nameEn": "Site of the First Congress of the CPC",
+      "kind": "culture",
+      "lng": 121.47069096565247,
+      "lat": 31.22206399582811
+    },
+    {
+      "id": "osm-403252552",
+      "name": "新天地",
+      "nameEn": "Xintiandi",
+      "kind": "culture",
+      "lng": 121.47043883800507,
+      "lat": 31.221930959365807
+    },
+    {
+      "id": "osm-68971585751",
+      "name": "石库门博物馆",
+      "nameEn": "Shikumen Wulixiang Museum",
+      "kind": "culture",
+      "lng": 121.47024035453796,
+      "lat": 31.221866734799775
+    },
+    {
+      "id": "osm-135889164011",
+      "name": "DOE (New World Branch)",
+      "nameEn": "DOE (New World Branch)",
+      "kind": "cafe",
+      "lng": 121.4735609292984,
+      "lat": 31.222247494089572
+    },
+    {
+      "id": "osm-14625844241",
+      "name": "Lavazza",
+      "nameEn": "Lavazza",
+      "kind": "cafe",
+      "lng": 121.47042274475098,
+      "lat": 31.219595909595782
+    },
+    {
+      "id": "osm-129998973781",
+      "name": "瑞幸咖啡",
+      "nameEn": "Luckin Coffee",
+      "kind": "cafe",
+      "lng": 121.47452652454376,
+      "lat": 31.22268330103283
+    },
+    {
+      "id": "osm-41617658931",
+      "name": "Let's Coffee",
+      "nameEn": "Let's Coffee",
+      "kind": "cafe",
+      "lng": 121.47023499011993,
+      "lat": 31.219082099153695
+    },
+    {
+      "id": "osm-44375340901",
+      "name": "星巴克",
+      "nameEn": "Starbucks",
+      "kind": "cafe",
+      "lng": 121.4747679233551,
+      "lat": 31.222894322620178
+    },
+    {
+      "id": "osm-42680878891",
+      "name": "Nana's Green Tea 七叶和茶",
+      "nameEn": "Nana's Green Tea 七叶和茶",
+      "kind": "cafe",
+      "lng": 121.47021889686584,
+      "lat": 31.22056388418156
+    },
+    {
+      "id": "osm-45806229951",
+      "name": "星巴克",
+      "nameEn": "Starbucks",
+      "kind": "cafe",
+      "lng": 121.47007942199707,
+      "lat": 31.217815911501077
+    },
+    {
+      "id": "osm-83242722881",
+      "name": "瑞幸咖啡",
+      "nameEn": "Luckin Coffee",
+      "kind": "cafe",
+      "lng": 121.47039592266083,
+      "lat": 31.216554294618504
+    },
+    {
+      "id": "osm-69070420851",
+      "name": "Mellower Coffee",
+      "nameEn": "Mellower Coffee",
+      "kind": "cafe",
+      "lng": 121.4726060628891,
+      "lat": 31.223651244003477
+    },
+    {
+      "id": "osm-6475225131",
+      "name": "Zen Life Store",
+      "nameEn": "Zen Life Store",
+      "kind": "cafe",
+      "lng": 121.46998822689056,
+      "lat": 31.221843797444166
+    },
+    {
+      "id": "osm-70996766671",
+      "name": "Greyhound",
+      "nameEn": "Greyhound",
+      "kind": "cafe",
+      "lng": 121.47066950798035,
+      "lat": 31.222692475894263
+    },
+    {
+      "id": "osm-74092661531",
+      "name": "沃歌斯",
+      "nameEn": "Wagas",
+      "kind": "cafe",
+      "lng": 121.47843182086945,
+      "lat": 31.221256599245834
+    }
+  ],
+  "paths": [
+    [
+      [
+        121.4698166,
+        31.2179352
+      ],
+      [
+        121.4697629,
+        31.2180453
+      ],
+      [
+        121.4699453,
+        31.2181003
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,18 @@
+import {env} from 'cloudflare:workers';
+import {createWorld,makePerson,uid,normalizeWorld,type World} from './world';
+export const digest=async(s:string)=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))).map(n=>n.toString(16).padStart(2,'0')).join('');
+export const database=()=>{if(!env.DB)throw Error('Database unavailable');return env.DB;};
+export type Session={hash:string;world_id:string;person_id:string;owner:string;user_id:string;cookie?:string|null};
+export async function loadWorld(id:string){const row=await database().prepare('SELECT body,version FROM aivow_worlds WHERE id=?').bind(id).first<{body:string;version:number}>();if(!row)throw Error('Circle unavailable');return {world:normalizeWorld(JSON.parse(row.body) as World),version:row.version};}
+export async function mutate<T>(id:string,fn:(w:World)=>T):Promise<T>{for(let i=0;i<6;i++){const {world,version}=await loadWorld(id);const result=fn(world);const changed=await database().prepare('UPDATE aivow_worlds SET body=?,version=version+1 WHERE id=? AND version=?').bind(JSON.stringify(world),id,version).run();if(changed.meta.changes)return result;}throw Error('Updated elsewhere. Please try again.');}
+export function sessionToken(req:Request){return req.headers.get('cookie')?.split(';').map(v=>v.trim()).find(v=>v.startsWith('aivow_session='))?.split('=')[1];}
+export async function session(req:Request):Promise<Session>{const raw=sessionToken(req),owner=req.headers.get('oai-authenticated-user-id')||'local';if(raw){const s=await database().prepare('SELECT hash,world_id,person_id,owner,user_id FROM aivow_sessions WHERE hash=?').bind(await digest(raw)).first<Session>();if(s&&s.user_id&&s.owner===owner)return {...s,cookie:null};}throw Error('Sign in required');}
+export async function newSession(req:Request,user:{id:string;world_id:string;person_id:string}){const token=uid()+uid(),hash=await digest(token),owner=req.headers.get('oai-authenticated-user-id')||'local';await database().prepare('INSERT INTO aivow_sessions(hash,world_id,person_id,owner,user_id,created_at) VALUES(?,?,?,?,?,?)').bind(hash,user.world_id,user.person_id,owner,user.id,Date.now()).run();return {cookie:`aivow_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000${new URL(req.url).protocol==='https:'?'; Secure':''}`,hash};}
+export async function makeAccountWorld(name='Member'){const id=uid(),code=uid().replaceAll('-','').slice(0,16),p=makePerson(uid(),name);const w=createWorld(id,code,p);await database().prepare('INSERT INTO aivow_worlds(id,code,body,version) VALUES(?,?,?,0)').bind(id,code,JSON.stringify(w)).run();return {world_id:id,person_id:p.id};}
+export async function join(s:Session,code:string){
+ const row=await database().prepare('SELECT id FROM aivow_worlds WHERE code=?').bind(code).first<{id:string}>();if(!row)throw Error('Invitation not found');if(row.id===s.world_id)return;
+ const old=(await loadWorld(s.world_id)).world,p=old.people.find(p=>p.id===s.person_id)!;
+ await mutate(row.id,w=>{if(w.people.filter(p=>!p.sample).length>=12)throw Error('This demo circle is full');if(!w.people.some(x=>x.id===p.id))w.people.push({...p,circles:[w.id],open:false,draft:undefined,revision:p.revision+1});});
+ await mutate(s.world_id,w=>{const p=w.people.find(p=>p.id===s.person_id);if(p){p.open=false;p.draft=undefined;}w.meetings.filter(m=>m.a===s.person_id||m.b===s.person_id).forEach(m=>{m.status='ended';m.generating=undefined;m.reviewFor=undefined;});});
+ await database().batch([database().prepare('UPDATE aivow_users SET world_id=? WHERE id=?').bind(row.id,s.user_id),database().prepare('UPDATE aivow_sessions SET world_id=? WHERE user_id=?').bind(row.id,s.user_id)]);s.world_id=row.id;
+}

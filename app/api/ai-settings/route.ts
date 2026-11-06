@@ -1,0 +1,6 @@
+import {session,mutate} from '../../../lib/store';
+import {aiStatus,saveKey,removeKey,testKey,credential,safeError,AiError} from '../../../lib/ai';
+export const dynamic='force-dynamic';
+const json=(data:unknown,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
+export async function GET(req:Request){try{const s=await session(req);return json(await aiStatus(s.user_id));}catch{return json({error:'Sign in required'},401);}}
+export async function POST(req:Request){try{if(req.headers.get('origin')&&new URL(req.headers.get('origin')!).host!==new URL(req.url).host)return json({error:'Invalid request origin'},403);const s=await session(req),b=await req.json() as {op:string;key?:string};if(b.op==='save')await saveKey(s.user_id,(b.key||'').trim());else if(b.op==='test')await testKey(b.key?.trim()||(await credential(s.user_id)).key);else if(b.op==='remove')await removeKey(s.user_id);else throw Error('Unknown action');if(b.op==='save'||b.op==='remove')await mutate(s.world_id,w=>{for(const d of w.dreams)if(d.run?.initiator===s.user_id&&d.status==='running'){d.status='paused';d.version++;d.run.lease=undefined;}});return json({...await aiStatus(s.user_id),tested:b.op==='test'});}catch(e){return json(safeError(e),e instanceof AiError?e.status:400);}}

@@ -1,0 +1,24 @@
+'use client';
+import {useState} from 'react';
+import {ArrowLeft,Check,ChevronRight,Clock3,FastForward,Play} from 'lucide-react';
+import {Avatar} from './art';
+import {useLocale} from './i18n';
+import {PLACES,type PlaceId,type View} from '../lib/world';
+
+export type SceneChoice={peer:string;mode:'realtime'|'accelerated';template:string;place:PlaceId;pace:string};
+const scenes=[{id:'afterWork',label:'After work',art:'coffee'},{id:'weekend',label:'A shared weekend',art:'park'},{id:'future',label:'An ordinary future day',art:'sun'}];
+export default function DreamSetup({world,fixedPeer,initialPlace,onStart,busy=false,onCancel}:{world:View;fixedPeer?:string;initialPlace?:PlaceId;onStart:(choice:SceneChoice)=>void;busy?:boolean;onCancel:()=>void}){
+ const {t}=useLocale();
+ const [step,setStep]=useState(0),[mode,setMode]=useState<'realtime'|'accelerated'|null>(null),[peer,setPeer]=useState(fixedPeer||''),[template,setTemplate]=useState(''),[place,setPlace]=useState<PlaceId>(initialPlace||world.me.place),[pace,setPace]=useState('balanced');
+ const person=world.people.find(p=>p.id===peer),options=world.people.filter(p=>p.connection),scene=scenes.find(s=>s.id===template);
+ const back=()=>{if(step===0)onCancel();else setStep(step===2&&fixedPeer?0:step-1);};
+ return <section className="dream-setup"><div className="dream-setup-breadcrumb"><button className="icon-button" aria-label={t('返回')} disabled={busy} onClick={back}><ArrowLeft size={19}/></button><span>Dream</span></div>
+  <div className="dream-setup-context">{mode&&step>0&&<button onClick={()=>setStep(0)}>{mode==='realtime'?<Clock3 size={13}/>:<FastForward size={13}/>}<span>{t(mode==='realtime'?'Realtime branch':'Fast forward')}</span></button>}{person&&step>1&&<button onClick={()=>!fixedPeer&&setStep(1)} disabled={!!fixedPeer}><Avatar variant={person.avatar} size={21}/>{person.name}</button>}{scene&&step>2&&<button onClick={()=>setStep(2)}>{t(scene.label)}</button>}</div>
+  <div className="dream-step-content" key={step}>
+  {step===0&&<><h2>{t('Where does your Dream begin?')}</h2><div className="dream-time-options">{([{value:'realtime',label:'Realtime branch',detail:'Keep this moment. Try a different choice.',art:'tree',Icon:Clock3},{value:'accelerated',label:'Fast forward',detail:'Imagine a weekend or a future day together.',art:'sun',Icon:FastForward}] as const).map(({value,label,detail,art,Icon})=><button className={`dream-time-card time-${value}`} key={value} onClick={()=>{setMode(value);setStep(fixedPeer?2:1);}}><span className="dream-time-art"><img src={`/assets/city/${art}.svg`} alt=""/></span><span><strong><Icon size={16}/>{t(label)}</strong><small>{t(detail)}</small></span><ChevronRight size={19}/></button>)}</div></>}
+  {step===1&&<><h2>{t('Who is in this Dream?')}</h2><div className="dream-people">{options.map(p=><button className={`dream-person ${peer===p.id?'selected':''}`} key={p.id} onClick={()=>{setPeer(p.id);setStep(2);}}><span className={`dream-person-avatar tint-${p.avatar%3}`}><Avatar variant={p.avatar} size={61}/></span><span><strong>{p.name}</strong><small>{t(p.sampleMode==='auto'?'AI demo':p.sampleMode==='dead'?'Offline · private imagination only':p.connection||'Connection')}</small></span>{peer===p.id?<Check size={18}/>:<ChevronRight size={18}/>}</button>)}</div>{!options.length&&<p className="dream-empty">{t('Add a friend or accept an introduction first.')}</p>}</>}
+  {step===2&&<><h2>{t(mode==='realtime'?'Try another way to spend today.':'Choose a day to imagine.')}</h2><div className="dream-scene-options">{scenes.map(s=><button className={template===s.id?'selected':''} key={s.id} onClick={()=>{setTemplate(s.id);setStep(3);}}><img src={`/assets/city/${s.art}.svg`} alt=""/><strong>{t(s.label)}</strong><ChevronRight size={18}/></button>)}</div></>}
+  {step===3&&<><h2>{t('Set the scene.')}</h2><fieldset><legend>{t('Place')}</legend><div className="dream-place-options">{PLACES.map(p=><button className={place===p.id?'selected':''} key={p.id} aria-pressed={place===p.id} onClick={()=>setPlace(p.id)}><img src={`/assets/city/${({park:'park',cafe:'coffee',bookshop:'books',riverside:'tree'} as const)[p.id]}.svg`} alt=""/>{t(p.name)}{place===p.id&&<Check size={13}/>}</button>)}</div></fieldset><fieldset><legend>{t('Pace')}</legend><div className="choice-pills">{[['quiet','Quiet'],['balanced','Unhurried'],['explore','Explore']].map(([v,label])=><button key={v} aria-pressed={pace===v} className={pace===v?'selected':''} onClick={()=>setPace(v)}>{t(label)}</button>)}</div></fieldset><p className="dream-private-note">{t('Private Dream')}</p><button className="btn purple full dream-start" disabled={busy||!peer||!mode||!template} onClick={()=>mode&&onStart({peer,mode,template,place,pace})}>{t(busy?'Starting…':'Start Dream')}<Play size={17}/></button></>}
+  </div>
+ </section>;
+}

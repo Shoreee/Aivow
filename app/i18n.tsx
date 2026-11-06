@@ -1,0 +1,8 @@
+'use client';
+import React,{createContext,useContext,useEffect,useState} from 'react';
+import {translations} from '../lib/translations';
+export type Language='en'|'zh';
+const reverse=Object.fromEntries(Object.entries(translations).map(([zh,en])=>[en,zh]));
+const Context=createContext<{language:Language;setLanguage:(l:Language)=>void;t:(key:unknown,...args:unknown[])=>string}>({language:'en',setLanguage:()=>{},t:k=>String(k??'')});
+export function Localization({children}:{children:React.ReactNode}){const [language,setValue]=useState<Language>('en');useEffect(()=>{setValue(localStorage.getItem('aivow-language')==='zh'?'zh':'en');},[]);const setLanguage=(value:Language)=>{localStorage.setItem('aivow-language',value);setValue(value);};useEffect(()=>{document.documentElement.lang=language==='zh'?'zh-CN':'en';},[language]);const t=(value:unknown,...args:unknown[])=>{const key=String(value??'');let translated=language==='en'?(translations[key]??key):(reverse[key]??key);if(language==='en'&&!translations[key]){const prefixes:Record<string,string>={'当前身份：':'Role: ','当前状态：':'Current focus: ','近期计划：':'Plans: ','作息：':'Daily rhythm: ','休闲方式：':'Downtime: ','重视：':'What matters: ','感兴趣的话题：':'Interests: ','当前交流节奏：':'Conversation pace: '};for(const [prefix,label] of Object.entries(prefixes))if(key.startsWith(prefix)){translated=label+key.slice(prefix.length).split('、').map(v=>translations[v]??v).join(', ');break;}}return translated.replace(/\{(\d+)\}/g,(_,i)=>String(args[Number(i)]??''));};return <Context.Provider value={{language,setLanguage,t}}>{children}</Context.Provider>;}
+export const useLocale=()=>useContext(Context);

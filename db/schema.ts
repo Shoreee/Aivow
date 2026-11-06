@@ -1,0 +1,5 @@
+import {sqliteTable,text,integer} from 'drizzle-orm/sqlite-core';
+export const worlds=sqliteTable('aivow_worlds',{id:text('id').primaryKey(),code:text('code').notNull().unique(),body:text('body').notNull(),version:integer('version').notNull().default(0)});
+export const sessions=sqliteTable('aivow_sessions',{hash:text('hash').primaryKey(),worldId:text('world_id').notNull(),personId:text('person_id').notNull(),owner:text('owner').notNull(),userId:text('user_id'),createdAt:integer('created_at').notNull()});
+export const users=sqliteTable('aivow_users',{id:text('id').primaryKey(),email:text('email').notNull().unique(),passwordHash:text('password_hash').notNull(),salt:text('salt').notNull(),worldId:text('world_id').notNull(),personId:text('person_id').notNull(),createdAt:integer('created_at').notNull()});
+export const aiKeys=sqliteTable('aivow_ai_keys',{userId:text('user_id').primaryKey(),ciphertext:text('ciphertext').notNull(),iv:text('iv').notNull(),hint:text('hint').notNull(),version:integer('version').notNull().default(1)});
